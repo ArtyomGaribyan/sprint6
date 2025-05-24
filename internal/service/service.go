@@ -6,16 +6,11 @@ import (
 	"github.com/Yandex-Practicum/go1fl-sprint6-final/pkg/morse"
 )
 
-func Reverse(data string) string {
-	sData := strings.Split(data, "")
-	var isText bool
-
-	for s := range sData {
-		if s != '.' && s != '-' {
-			isText = true
-			break
-		}
+func Convert(data string) string {
+	containsText := func(r rune) bool {
+		return r != '.' && r != '-' && r != ' '
 	}
+	isText := strings.ContainsFunc(data, containsText)
 
 	if isText {
 		return morse.ToMorse(data)
